@@ -32,7 +32,7 @@
 
 			<nav class="desktop">
 				<ul>
-					<li><a href="home">Home</a></li>
+					<li><a href="index">Home</a></li>
 					<li><a href="vendas">Venda</a></li>
 					<li><a href="">Galeria</a></li>
 					<li><a href="">Eventos</a></li>
@@ -43,7 +43,7 @@
 
 			<nav class="mobile">
 				<ul>
-					<li><a href="home">Home</a></li>
+					<li><a href="index">Home</a></li>
 					<li><a href="vendas">Venda</a></li>
 					<li><a href="">Galeria</a></li>
 					<li><a href="">Eventos</a></li>
@@ -64,7 +64,7 @@
 			include('404.html');
 		}
 	}else{
-		include('home.html');
+		include('index.html');
 	}
 ?>
 
@@ -73,7 +73,7 @@
 
 			<nav>
 				<ul>
-					<li><a href="home">Home</a></li>
+					<li><a href="index">Home</a></li>
 					<li><a href="vendas">Venda</a></li>
 					<li><a href="">Galeria</a></li>
 					<li><a href="">Eventos</a></li>
