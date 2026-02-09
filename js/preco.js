@@ -270,10 +270,23 @@ cada posição no DOM através do index que começa do 0 até o 14 que contabili
 		});
 	}
 
+	// guarda a largura inicial da tela
+	var larguraInicial = window.innerWidth;
+
 	$(window).resize(function() {
-        $('input[type=checkbox]').prop('checked', false);
-        atualizarBarraInicial();
-    });
+
+    // se a largura NÃO mudou, ignora o resize (scroll mobile dispara resize de altura)
+    if(window.innerWidth === larguraInicial) return;
+
+    // atualiza a largura guardada
+    larguraInicial = window.innerWidth;
+
+    // agora sim executa o reset de verdade
+    $('input[type=checkbox]').prop('checked', false);
+    atualizarBarraInicial();
+	
+	});
+
 	
 
 /*Seleciona todos os elementos com o input class decade-checkbox
