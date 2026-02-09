@@ -270,10 +270,10 @@ cada posição no DOM através do index que começa do 0 até o 14 que contabili
 		});
 	}
 
-	// guarda a largura inicial da tela
+	// guarda a largura inicial da tela para não dar resize no mobile
 	var larguraInicial = window.innerWidth;
 
-	$(window).resize(function() {
+	$(window).resize(function() { //Função de resize, quando altera tamanho da largura da janela
 
     // se a largura NÃO mudou, ignora o resize (scroll mobile dispara resize de altura)
     if(window.innerWidth === larguraInicial) return;
