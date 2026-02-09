@@ -134,37 +134,56 @@ separador de milhares, caso necessário*/
 	})
 
 
-// Precisamos registrar o evento manualmente para poder usar preventDefault
-document.querySelector('.barra-preco').addEventListener('touchmove', function(e){
+	// Evento disparado enquanto o dedo está arrastando na barra de preço (equivalente ao mousemove no mobile)
+$('.barra-preco').on('touchmove', function(e){
 
-    // impede a página de rolar enquanto arrasta o slider
-    if(isDrag) e.preventDefault();
-
+    // Só executa se o usuário estiver realmente arrastando o slider
     if(isDrag){
 
+        // Desativa seleção de texto pra não ficar selecionando a página enquanto arrasta
         disableTextSelection();
 
-        var elBase = $('.barra-preco');
+        // Guarda a barra base onde o slider está
+        var elBase = $(this);
 
-        var touch = e.touches[0];
+        // Pega o evento de toque (mobile pode ter vários dedos, usamos o primeiro)
+        var touch = e.originalEvent.touches[0];
+
+        // Calcula a posição do dedo em relação ao início da barra
+        // pageX = posição do dedo na tela inteira
+        // offset().left = posição da barra na tela
         var mouseX = touch.pageX - elBase.offset().left;
 
+        // Impede o ponteiro de sair da barra pela esquerda
         if(mouseX < 0) mouseX = 0;
+
+        // Impede o ponteiro de sair da barra pela direita
         if(mouseX > elBase.width()) mouseX = elBase.width();
 
+        // Move o botão (bolinha) do slider conforme o dedo arrasta
+        // -13 é só ajuste visual para centralizar a bolinha
         $('.pointer-barra').css('left',(mouseX-13)+'px');
 
+        // Converte a posição do dedo em porcentagem da barra (0 → 100%)
         currentValue = (mouseX / elBase.width()) * 100;
+
+        // Preenche a barra colorida até a posição atual
         $('.barra-preco-fill').css('width',currentValue+'%');
 
+        // Converte a porcentagem em valor real de preço
         preco_atual = ((currentValue / 100) * (preco_maximo - preco_minimo));
+
+        // Formata o número para formato de dinheiro (ex: 35000 → 35.000)
         preco_atual = formatarPreco(preco_atual);
 
+        // Atualiza o texto do preço mostrado na tela
         $('.preco_pesquisa').html('R$'+preco_atual);
+
+        // Atualiza os carros exibidos com base no novo preço selecionado
         atualizarImagens(preco_atual);
     }
 
-}, { passive:false }); // ⭐ ESSA LINHA É O SEGREDO
+});
 
 
 
