@@ -135,10 +135,7 @@ separador de milhares, caso necessário*/
 
 
 	// Evento disparado enquanto o dedo está arrastando na barra de preço (equivalente ao mousemove no mobile)
-	document.querySelector('.barra-preco').addEventListener('touchmove', function(e){
-
-	// impede a página de rolar enquanto arrasta o slider
-    if(isDrag) e.preventDefault();
+$('.barra-preco').on('touchmove', function(e){
 
     // Só executa se o usuário estiver realmente arrastando o slider
     if(isDrag){
@@ -185,9 +182,6 @@ separador de milhares, caso necessário*/
         // Atualiza os carros exibidos com base no novo preço selecionado
         atualizarImagens(preco_atual);
     }
-
-	}, { passive:false // ⭐ ESSA LINHA É O SEGREDO
-
 
 });
 
